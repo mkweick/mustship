@@ -1,0 +1,142 @@
+<script>
+  setTimeout(function () {
+    location.reload();
+  }, 1000 * 60 * 5);
+</script>
+
+<body class="main-bg">
+  <br/>
+  <div class="main">
+    <div class="col-md-12 text-center ms-header">
+      <%= image_tag "dival-logo.png", class: "dival-logo-left" %>
+      Must Ship Central
+    </div>
+    <br/><br/>
+    <div class="col-md-3 text-center left-menu-title bold">
+      <div class="col-md-12 well <%= @to_be_dispatched.to_i < 1 ? 
+                                     "green-bg" : "light-gray-bg"  %>">
+        TO BE DISPATCHED
+        <br/>
+        <span class="left-menu-totals"><%= @to_be_dispatched %></span>
+      </div>
+      <div class="col-md-12 well <%= @to_be_picked.to_i < 1 ? 
+                                     "green-bg" : "light-gray-bg"  %>">
+        TO BE PICKED
+        <br/>
+        <span class="left-menu-totals"><%= @to_be_picked %></span>
+      </div>
+      <div class="col-md-12 well <%= @to_be_verified.to_i < 1 ? 
+                                     "green-bg" : "light-gray-bg" %>">
+        TO BE VERIFIED
+        <br/>
+        <span class="left-menu-totals"><%= @to_be_verified %></span>
+      </div>
+      <div class="col-md-12 well <%= @total_verified.to_i > 0 ? 
+                                     "green-bg" : "light-gray-bg" %>">
+        VERIFIED ORDERS
+        <br/>
+        <span class="left-menu-totals"><%= @total_verified %></span>
+      </div>
+    </div>
+    <div class="col-md-9 text-center">
+      <div class="well ms-scroll-window">
+        <div class="text-left">
+          <span class="row-label dispatched-label text-center">
+            -------- DISPATCHED --------
+          </span>
+          <span class="row-label nia-label text-center">
+            ----------- NIA -----------
+          </span>
+          <span class="row-label ont-label text-center">
+            ----------- ONT -----------
+          </span>
+        </div>
+        <table>
+          <thead>
+            <div>
+              <span class="row-header order">ORDER</span>
+              <span class="row-header carrier">CARRIER</span>
+              <span class="row-header dispatched-date text-center">DATE</span>
+              <span class="row-header dispatched-time">TIME</span>
+              <span class="row-header picker">PKR</span>
+              <span class="row-header unit">UNIT</span>
+              <span class="row-header picker">PKR</span>
+              <span class="row-header unit">UNIT</span>
+              <span class="row-header account-header text-left">ACCOUNT</span>
+            </div>
+          </thead>
+          <% if @mustships.any? %>
+            <section id="mustship-data1">
+              <% @mustships.each do |order| %>
+                <div id="<%= order.order_num %>" class="ms-order-row">
+                  
+                  <span class="row-data order-num">
+                    <%= order.order_num + ' / ' + order.order_gen %>
+                  </span>
+                  <span class="row-data carrier"><%= order.carrier %></span>
+                  
+                  <% if order.dispatch_date == '99999999' %>
+                    <span class="row-data dispatched bold red">
+                      NOT DISPATCHED
+                    </span>
+                  <% else %>
+                    <span class="row-data dispatched-date">
+                      <%= order.dispatch_date
+                               .to_datetime
+                               .strftime("%a %m/%d") %>
+                    </span>
+                    <span class="row-data dispatched-time">
+                      <%= (order.dispatch_date + ' ' + order.dispatch_time)
+                                                       .to_datetime
+                                                       .strftime("%l:%M %p") %>
+                    </span>
+                  <% end %>
+                  
+                  <% if !(order.buf_picker.blank?) %>
+                    <span class="row-data picker bold green">
+                      <%= order.buf_picker %>
+                    </span>
+                    <span class="row-data unit bold green">
+                      <%= order.buf_unit %>
+                    </span>
+                  <% elsif !(%w(0 99).include? order.buf_unit) %>
+                    <span class="row-data picker"></span>
+                    <span class="row-data unit bold yellow">
+                      <%= order.buf_unit %>
+                    </span>
+                  <% else %>
+                    <span class="row-data picker"></span>
+                    <span class="row-data unit"></span>
+                  <% end %>
+
+                  <% if !(order.ont_picker.blank?) %>
+                    <span class="row-data picker bold green">
+                      <%= order.ont_picker %>
+                    </span>
+                    <span class="row-data unit bold green">
+                      <%= order.ont_unit %>
+                    </span>
+                  <% elsif !(%w(0 99).include? order.ont_unit) %>
+                    <span class="row-data picker"></span>
+                    <span class="row-data unit bold yellow">
+                      <%= order.ont_unit %>
+                    </span>
+                  <% else %>
+                    <span class="row-data picker"></span>
+                    <span class="row-data unit"></span>
+                  <% end %>
+
+                  <span class="row-data account text-left">
+                    <%= order.account_name %>
+                  </span>
+                </div>
+              <% end %>
+            </section>
+          <% else %>
+
+          <% end %>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>

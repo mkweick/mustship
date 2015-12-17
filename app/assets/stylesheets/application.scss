@@ -1,0 +1,176 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+.main-bg {
+	background-color: whitesmoke;
+}
+
+.dival-logo-left {
+	float: left;
+}
+
+.ms-header {
+  font-size: 80px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.left-menu-title {
+	font-size: 35px;
+}
+
+.left-menu-totals {
+	font-size: 85px;
+}
+
+.row-label {
+	font-weight: bold;
+	font-size: 17px;
+}
+
+.dispatched-label {
+	width: 228px;
+	margin-left: 305px;
+}
+
+.nia-label {
+	width: 165px;
+	margin-left: 40px;
+}
+
+.ont-label {
+	width: 170px;
+	margin-left: 19px;
+}
+
+.row-header {
+	display: inline-block;
+	margin-right: 30px;
+	font-weight: bold;
+	font-size: 30px;
+}
+
+.row-data {
+	display: inline-block;
+	margin-right: 30px;
+	font-size: 20px;
+}
+
+.filler {
+	width: 10%;
+}
+
+.filler1 {
+	width: 13%;
+}
+
+.filler2 {
+	width: 20%;
+}
+
+.filler3 {
+	width: 20%;
+}
+
+.ms-order-row {
+	margin-bottom: 10px;
+}
+
+.order {
+	width: 95px;
+}
+
+.carrier {
+	width: 115px;
+}
+
+.dispatched {
+	width: 228px;
+}
+
+.dispatched-date {
+	width: 100px;
+}
+
+.dispatched-time {
+	width: 95px;
+}
+
+.picker {
+	width: 60px;
+}
+
+.unit {
+	width: 60px;
+}
+
+.account {
+	width: 390px;
+}
+
+.account-header {
+	width: 365px;
+	margin-left: 20px;
+}
+
+.ms-scroll-window {
+	background-color: #e6e6e6;
+	border: 1px solid #003300;
+	box-shadow: 0px 0px 20px #000000;
+	height: 905px;
+}
+
+.light-gray-bg {
+	background-color: #e6e6e6;
+	border: 1px solid #cccccc;
+	box-shadow: 0px 0px 5px #000000;
+	
+}
+
+.green-bg {
+	background-color: #004d00;
+	border: 1px solid #003300;
+	box-shadow: 0px 0px 5px #000000;
+	color: #e6e6e6;
+}
+
+
+
+.red-bg {
+	background-color: #990000;
+	border: 1px solid #800000;
+	box-shadow: 0px 0px 5px #660000;
+	color: white;
+}
+
+.green {
+	color: #006600;
+}
+
+.yellow {
+	color: #e67300;
+}
+
+.red {
+	color: #990000;
+}
+
+.bold {
+	font-weight: bold;
+}
