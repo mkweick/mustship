@@ -13,7 +13,7 @@
 
 ActiveRecord::Schema.define(version: 20151215135549) do
 
-  create_table "mustships", force: true do |t|
+  create_table "mustships", force: :cascade do |t|
     t.string "order_num"
     t.string "order_gen"
     t.string "carrier"
