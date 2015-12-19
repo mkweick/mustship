@@ -1,6 +1,6 @@
 class MustshipsController < ApplicationController
   require 'odbc'
-  CLIENT = ODBC.connect("mustship", "common", "common")
+  CLIENT = ODBC.connect("mustship", '', '')
 
   before_action :set_mustships
 
@@ -17,7 +17,7 @@ class MustshipsController < ApplicationController
     end
 
     totals_script.drop
-  end    
+  end
 
   private
 
