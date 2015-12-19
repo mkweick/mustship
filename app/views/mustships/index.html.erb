@@ -13,25 +13,25 @@
     </div>
     <br/><br/>
     <div class="col-md-3 text-center left-menu-title bold">
-      <div class="col-md-12 well <%= @to_be_dispatched.to_i < 1 ? 
+      <div class="col-md-12 well <%= @to_be_dispatched.to_i < 1 ?
                                      "green-bg" : "light-gray-bg"  %>">
         TO BE DISPATCHED
         <br/>
         <span class="left-menu-totals"><%= @to_be_dispatched %></span>
       </div>
-      <div class="col-md-12 well <%= @to_be_picked.to_i < 1 ? 
+      <div class="col-md-12 well <%= @to_be_picked.to_i < 1 ?
                                      "green-bg" : "light-gray-bg"  %>">
         TO BE PICKED
         <br/>
         <span class="left-menu-totals"><%= @to_be_picked %></span>
       </div>
-      <div class="col-md-12 well <%= @to_be_verified.to_i < 1 ? 
+      <div class="col-md-12 well <%= @to_be_verified.to_i < 1 ?
                                      "green-bg" : "light-gray-bg" %>">
         TO BE VERIFIED
         <br/>
         <span class="left-menu-totals"><%= @to_be_verified %></span>
       </div>
-      <div class="col-md-12 well <%= @total_verified.to_i > 0 ? 
+      <div class="col-md-12 well <%= @total_verified.to_i > 0 ?
                                      "green-bg" : "light-gray-bg" %>">
         VERIFIED ORDERS
         <br/>
@@ -48,7 +48,7 @@
             ----------- NIA -----------
           </span>
           <span class="row-label ont-label text-center">
-            ----------- ONT -----------
+            ---------- ONT ----------
           </span>
         </div>
         <table>
@@ -69,12 +69,12 @@
             <section id="mustship-data1">
               <% @mustships.each do |order| %>
                 <div id="<%= order.order_num %>" class="ms-order-row">
-                  
+
                   <span class="row-data order-num">
                     <%= order.order_num + ' / ' + order.order_gen %>
                   </span>
                   <span class="row-data carrier"><%= order.carrier %></span>
-                  
+
                   <% if order.dispatch_date == '99999999' %>
                     <span class="row-data dispatched bold red">
                       NOT DISPATCHED
@@ -91,7 +91,7 @@
                                                        .strftime("%l:%M %p") %>
                     </span>
                   <% end %>
-                  
+
                   <% if !(order.buf_picker.blank?) %>
                     <span class="row-data picker bold green">
                       <%= order.buf_picker %>
@@ -127,7 +127,7 @@
                   <% end %>
 
                   <span class="row-data account text-left">
-                    <%= order.account_name %>
+                    <%= order.account_name[0...20] %>
                   </span>
                 </div>
               <% end %>
