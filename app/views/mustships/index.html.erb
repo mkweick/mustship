@@ -42,50 +42,50 @@
       <div class="well ms-scroll-window">
         <div class="text-left">
           <span class="row-label dispatched-label text-center">
-            -------- DISPATCHED --------
+            ------ DISPATCHED ------
           </span>
           <span class="row-label nia-label text-center">
-            ----------- NIA -----------
+            ------------ NIA ------------
           </span>
           <span class="row-label ont-label text-center">
-            ---------- ONT ----------
+            ----------- ONT -----------
           </span>
         </div>
         <table>
           <thead>
             <div>
-              <span class="row-header order">ORDER</span>
-              <span class="row-header carrier">CARRIER</span>
-              <span class="row-header dispatched-date text-center">DATE</span>
-              <span class="row-header dispatched-time">TIME</span>
-              <span class="row-header picker">PKR</span>
-              <span class="row-header unit">UNIT</span>
-              <span class="row-header picker">PKR</span>
-              <span class="row-header unit">UNIT</span>
+              <span class="row-header order-header">ORDER</span>
+              <span class="row-header carrier-header">CARRIER</span>
+              <span class="row-header dispatched-date-header">DATE</span>
+              <span class="row-header dispatched-time-header">TIME</span>
+              <span class="row-header picker-header">PKR</span>
+              <span class="row-header unit-header">UNIT</span>
+              <span class="row-header picker-header">PKR</span>
+              <span class="row-header unit-header">UNIT</span>
               <span class="row-header account-header text-left">ACCOUNT</span>
             </div>
           </thead>
           <% if @mustships.any? %>
-            <section id="mustship-data1">
+            <section id="mustship-data">
               <% @mustships.each do |order| %>
                 <div id="<%= order.order_num %>" class="ms-order-row">
 
-                  <span class="row-data order-num">
+                  <span class="row-data order-data">
                     <%= order.order_num + ' / ' + order.order_gen %>
                   </span>
-                  <span class="row-data carrier"><%= order.carrier %></span>
+                  <span class="row-data carrier-data"><%= order.carrier %></span>
 
                   <% if order.dispatch_date == '99999999' %>
-                    <span class="row-data dispatched bold red">
+                    <span class="row-data dispatched-data bold red">
                       NOT DISPATCHED
                     </span>
                   <% else %>
-                    <span class="row-data dispatched-date">
+                    <span class="row-data dispatched-date-data">
                       <%= order.dispatch_date
                                .to_datetime
                                .strftime("%a %m/%d") %>
                     </span>
-                    <span class="row-data dispatched-time">
+                    <span class="row-data dispatched-time-data">
                       <%= (order.dispatch_date + ' ' + order.dispatch_time)
                                                        .to_datetime
                                                        .strftime("%l:%M %p") %>
@@ -93,40 +93,40 @@
                   <% end %>
 
                   <% if !(order.buf_picker.blank?) %>
-                    <span class="row-data picker bold green">
+                    <span class="row-data picker-data bold green">
                       <%= order.buf_picker %>
                     </span>
-                    <span class="row-data unit bold green">
+                    <span class="row-data unit-data bold green">
                       <%= order.buf_unit %>
                     </span>
                   <% elsif !(%w(0 99).include? order.buf_unit) %>
-                    <span class="row-data picker"></span>
-                    <span class="row-data unit bold yellow">
+                    <span class="row-data picker-data"></span>
+                    <span class="row-data unit-data bold yellow">
                       <%= order.buf_unit %>
                     </span>
                   <% else %>
-                    <span class="row-data picker"></span>
-                    <span class="row-data unit"></span>
+                    <span class="row-data picker-data"></span>
+                    <span class="row-data unit-data"></span>
                   <% end %>
 
                   <% if !(order.ont_picker.blank?) %>
-                    <span class="row-data picker bold green">
+                    <span class="row-data picker-data bold green">
                       <%= order.ont_picker %>
                     </span>
-                    <span class="row-data unit bold green">
+                    <span class="row-data unit-data bold green">
                       <%= order.ont_unit %>
                     </span>
                   <% elsif !(%w(0 99).include? order.ont_unit) %>
-                    <span class="row-data picker"></span>
-                    <span class="row-data unit bold yellow">
+                    <span class="row-data picker-data"></span>
+                    <span class="row-data unit-data bold yellow">
                       <%= order.ont_unit %>
                     </span>
                   <% else %>
-                    <span class="row-data picker"></span>
-                    <span class="row-data unit"></span>
+                    <span class="row-data picker-data"></span>
+                    <span class="row-data unit-data"></span>
                   <% end %>
 
-                  <span class="row-data account text-left">
+                  <span class="row-data account-data text-left">
                     <%= order.account_name[0...20] %>
                   </span>
                 </div>

@@ -46,86 +46,105 @@
 
 .dispatched-label {
 	width: 228px;
-	margin-left: 353px;
+	margin-left: 368px;
 }
 
 .nia-label {
 	width: 165px;
-	margin-left: 36px;
+	margin-left: 50px;
 }
 
 .ont-label {
 	width: 170px;
-	margin-left: 16px;
+	margin-left: 61px;
 }
 
 .row-header {
 	display: inline-block;
-	margin-right: 30px;
+	margin-left: 20px;
 	font-weight: bold;
 	font-size: 30px;
 }
 
 .row-data {
 	display: inline-block;
-	margin-right: 30px;
 	font-size: 20px;
-}
-
-.filler {
-	width: 10%;
-}
-
-.filler1 {
-	width: 13%;
-}
-
-.filler2 {
-	width: 20%;
-}
-
-.filler3 {
-	width: 20%;
 }
 
 .ms-order-row {
 	margin-bottom: 10px;
 }
 
-.order {
-	width: 110px;
+.order-header {
+	width: 115px;
 }
 
-.carrier {
-	width: 140px;
+.carrier-header {
+	width: 150px;
 }
 
-.dispatched {
-	width: 228px;
+.dispatched-header {
+	width: 200px;
 }
 
-.dispatched-date {
+.dispatched-date-header {
+	width: 96px;
+}
+
+.dispatched-time-header {
+	width: 90px;
+}
+
+.picker-header {
+	width: 90px;
+}
+
+.unit-header {
 	width: 100px;
-}
-
-.dispatched-time {
-	width: 95px;
-}
-
-.picker {
-	width: 60px;
-}
-
-.unit {
-	width: 60px;
-}
-
-.account {
-	width: 275px;
 }
 
 .account-header {
 	width: 275px;
+}
+
+.order-data {
+	width: 115px;
+	margin-left: 15px;
+}
+
+.carrier-data {
+	width: 150px;
+	margin-left: 20px;
+}
+
+.dispatched-data {
+	width: 213px;
+	margin-left: 20px;
+}
+
+.dispatched-date-data {
+	width: 96px;
+	margin-left: 20px;
+}
+
+.dispatched-time-data {
+	width: 90px;
+	margin-left: 20px;
+}
+
+.picker-data {
+	width: 90px;
+	margin-left: 20px;
+}
+
+.unit-data {
+	width: 100px;
+	margin-left: 20px;
+}
+
+.account-data {
+	width: 275px;
+	margin-left: 15px;
 }
 
 .ms-scroll-window {
