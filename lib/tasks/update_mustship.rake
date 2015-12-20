@@ -60,7 +60,7 @@ task update_mustship: :environment do
   @ms_order_numbers = Mustship.pluck(:order_num)
   @ms_order_numbers.each do |order_num|
     unless updated_order_nums.include? order_num
-      Mustship.find(order_num).destroy
+      Mustship.find_by(order_num: order_num).destroy
     end
   end
 end
