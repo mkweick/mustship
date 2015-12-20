@@ -1,5 +1,5 @@
 require 'odbc'
-CLIENT = ODBC.connect("mustship", '', '')
+CONNECTION = ODBC.connect("mustship", '', '')
 
 task update_mustship: :environment do
   def set_order_details(order)
@@ -10,13 +10,13 @@ task update_mustship: :environment do
       "ont_unit" => order[8], "account_name" => order[9] }
   end
 
-  ms_orders = "SELECT MSORNO, MSORGN, MSCACD, MSDDATE, MSDTIME, MSPICKER1,
-                 MSUNIT1, MSPICKER2, MSUNIT2, MSCSNM FROM MUSTSHIPLX"
-  orders_script = CLIENT.prepare(ms_orders)
-  orders = orders_script.execute
+  sql = "SELECT MSORNO, MSORGN, MSCACD, MSDDATE, MSDTIME, MSPICKER1,
+         MSUNIT1, MSPICKER2, MSUNIT2, MSCSNM FROM MUSTSHIPLX"
+  stmnt = CONNECTION.prepare(sql)
+  ms_orders = stmnt.execute
 
   current_ms_orders = []
-  orders.each do |order|
+  ms_orders.each do |order|
     current_ms_orders << order[0]
     existing_order = Mustship.find_by(order_num: order[0])
     current_order_details = set_order_details(order)
@@ -29,12 +29,12 @@ task update_mustship: :environment do
     end
   end
 
+  stmnt.drop
+
   @mustships = Mustship.all
   @mustships.each do |ms|
     unless current_ms_orders.include? ms.order_num
       ms.destroy
     end
   end
-
-  orders_script.drop
 end
