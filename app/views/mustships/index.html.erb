@@ -1,7 +1,7 @@
 <script>
   setTimeout(function () {
     location.reload();
-  }, 1000 * 60 * 5);
+  }, 1000 * 60 * .5);
 </script>
 
 <body class="main-bg">
@@ -9,33 +9,33 @@
   <div class="main">
     <div class="col-md-12 text-center ms-header">
       <%= image_tag "dival-logo.png", class: "dival-logo-left" %>
-      Must Ship Central
+      Must Ship Central (<%= @total_mustships %>)
     </div>
     <br/><br/>
     <div class="col-md-3 text-center left-menu-title bold">
-      <div class="col-md-12 well <%= @to_be_dispatched.to_i < 1 ?
+      <div class="col-md-12 well <%= @totals.not_dispatched.to_i < 1 ?
                                      "green-bg" : "light-gray-bg"  %>">
         TO BE DISPATCHED
         <br/>
-        <span class="left-menu-totals"><%= @to_be_dispatched %></span>
+        <span class="left-menu-totals"><%= @totals.not_dispatched %></span>
       </div>
-      <div class="col-md-12 well <%= @to_be_picked.to_i < 1 ?
+      <div class="col-md-12 well <%= @totals.not_picked.to_i < 1 ?
                                      "green-bg" : "light-gray-bg"  %>">
         TO BE PICKED
         <br/>
-        <span class="left-menu-totals"><%= @to_be_picked %></span>
+        <span class="left-menu-totals"><%= @totals.not_picked %></span>
       </div>
-      <div class="col-md-12 well <%= @to_be_verified.to_i < 1 ?
+      <div class="col-md-12 well <%= @totals.not_verified.to_i < 1 ?
                                      "green-bg" : "light-gray-bg" %>">
         TO BE VERIFIED
         <br/>
-        <span class="left-menu-totals"><%= @to_be_verified %></span>
+        <span class="left-menu-totals"><%= @totals.not_verified %></span>
       </div>
-      <div class="col-md-12 well <%= @total_verified.to_i > 0 ?
+      <div class="col-md-12 well <%= @totals.verified.to_i > 0 ?
                                      "green-bg" : "light-gray-bg" %>">
         VERIFIED ORDERS
         <br/>
-        <span class="left-menu-totals"><%= @total_verified %></span>
+        <span class="left-menu-totals"><%= @totals.verified %></span>
       </div>
     </div>
     <div class="col-md-9 text-center">
