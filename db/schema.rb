@@ -11,7 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151215135549) do
+ActiveRecord::Schema.define(version: 20151220203523) do
+
+  create_table "mustship_totals", force: :cascade do |t|
+    t.string "not_dispatched", default: "0", null: false
+    t.string "not_picked",     default: "0", null: false
+    t.string "not_verified",   default: "0", null: false
+    t.string "verified",       default: "0", null: false
+  end
 
   create_table "mustships", force: :cascade do |t|
     t.string "order_num"
