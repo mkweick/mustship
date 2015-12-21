@@ -17,13 +17,10 @@
 //= require bootstrap
 //= require jquery.turbolinks
 
-/**
- * infinite loop carousel
- * @author newdongyuwei@gmail.com
- * @param  {Object} config 
- * @return {Object} this
- */
- 
+setTimeout(function () {
+  location.reload();
+}, 1000 * 60 * .5);
+
 $.fn.infiniteScrollUp=function(){
     var self=this,kids=self.children()
     setInterval(function(){
@@ -35,7 +32,7 @@ $.fn.infiniteScrollUp=function(){
       })
     },0)
 		return this;
-}	
+}
 
 $(function(){
 	$('section').infiniteScrollUp()
