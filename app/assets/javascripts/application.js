@@ -19,7 +19,7 @@
 
 setTimeout(function () {
   location.reload();
-}, 1000 * 60 * .5);
+}, 1000 * 60 * 5);
 
 $.fn.infiniteScrollUp=function(){
     var self=this,kids=self.children()
