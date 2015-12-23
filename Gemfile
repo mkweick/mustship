@@ -22,4 +22,5 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 
 group :development do
   gem 'pry'
+  gem 'spring'
 end
