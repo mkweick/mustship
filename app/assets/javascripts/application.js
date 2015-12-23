@@ -21,17 +21,21 @@ setTimeout(function () {
   location.reload();
 }, 1000 * 60 * 5);
 
-$.fn.infiniteScrollUp=function(){
-    var self=this,kids=self.children()
-    setInterval(function(){
-    	kids.slice(21).hide()
+$.fn.infiniteScrollUp=function() {
+  var self=this,kids=self.children()
+  if (kids.size() > 21) {
+    setInterval(function() {
+      kids.slice(21).hide()
       kids.filter(':hidden').eq(0).slideDown()
-      kids.eq(0).slideUp(800, "linear",function(){
+      kids.eq(0).slideUp(800, "linear",function() {
         $(this).appendTo(self)
         kids=self.children()
       })
     },0)
 		return this;
+  } else {
+    return false;
+  }
 }
 
 $(function(){
