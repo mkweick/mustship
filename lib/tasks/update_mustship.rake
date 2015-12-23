@@ -20,7 +20,7 @@ namespace :mustship do
       Mustship.find_by(order_num: order_num)
     end
 
-    as400 = ODBC.connect("mustship", '', '')
+    as400 = ODBC.connect('mustship')
 
     sql_ms_order_totals = "SELECT mtdispat, mtpicked, mtverify,
                          mtverftd FROM mustshiptl"
