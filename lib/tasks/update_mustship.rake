@@ -23,9 +23,9 @@ namespace :mustship do
     as400 = ODBC.connect("mustship", '', '')
 
     sql_ms_order_totals = "SELECT mtdispat, mtpicked, mtverify,
-                         mtverftd FROM matt.mustshiptl"
+                         mtverftd FROM mustshiptl"
     sql_ms_orders = "SELECT msorno, msorgn, mscacd, msddate, msdtime, mspicker1,
-                   msunit1, mspicker2, msunit2, mscsnm FROM matt.mustshiplx"
+                   msunit1, mspicker2, msunit2, mscsnm FROM mustshiplx"
 
     stmt_totals = as400.run(sql_ms_order_totals)
     ms_totals = stmt_totals.fetch_all
