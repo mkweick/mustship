@@ -1,33 +1,44 @@
+<script>
+  $(document).ready(function() {
+    var interval = 1000 * 60 * 5;
+    setInterval(updateDataDesktop, interval);
+  });
+
+  function updateDataDesktop() {
+    $.ajax({
+      url: "update-data-desktop"
+    });
+  }
+</script>
 <body class="main-bg">
   <br/>
   <div class="main">
     <div class="col-md-12 text-center ms-header">
       <%= image_tag "dival-logo.png", class: "dival-logo-left" %>
       Must Ship Central
-      <%= "(#{@total_mustships})" if @total_mustships.to_i > 0 %>
     </div>
     <br/><br/>
     <div class="col-md-3 text-center left-menu-title-dt bold">
-      <div class="col-md-12 well <%= @totals.not_dispatched.to_i < 1 ?
-                                     "green-bg" : "light-gray-bg"  %>">
+      <div id="not-dispatched" class="col-md-12 well <%= @totals.not_dispatched.to_i < 1 ?
+        "green-bg" : "light-gray-bg"  %>">
         TO BE DISPATCHED
         <br/>
         <span class="left-menu-totals-dt"><%= @totals.not_dispatched %></span>
       </div>
-      <div class="col-md-12 well <%= @totals.not_picked.to_i < 1 ?
-                                     "green-bg" : "light-gray-bg"  %>">
+      <div id="not-picked" class="col-md-12 well <%= @totals.not_picked.to_i < 1 ?
+        "green-bg" : "light-gray-bg"  %>">
         TO BE PICKED
         <br/>
         <span class="left-menu-totals-dt"><%= @totals.not_picked %></span>
       </div>
-      <div class="col-md-12 well <%= @totals.not_verified.to_i < 1 ?
-                                     "green-bg" : "light-gray-bg" %>">
+      <div id="not-verified" class="col-md-12 well <%= @totals.not_verified.to_i < 1 ?
+        "green-bg" : "light-gray-bg" %>">
         TO BE VERIFIED
         <br/>
         <span class="left-menu-totals-dt"><%= @totals.not_verified %></span>
       </div>
-      <div class="col-md-12 well <%= @totals.verified.to_i > 0 ?
-                                     "green-bg" : "light-gray-bg" %>">
+      <div id="verified" class="col-md-12 well <%= @totals.verified.to_i > 0 ?
+        "green-bg" : "light-gray-bg" %>">
         VERIFIED ORDERS
         <br/>
         <span class="left-menu-totals-dt"><%= @totals.verified %></span>
@@ -127,8 +138,6 @@
                 </div>
               <% end %>
             </section>
-          <% else %>
-
           <% end %>
         </table>
       </div>

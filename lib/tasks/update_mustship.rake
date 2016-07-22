@@ -24,11 +24,8 @@ namespace :mustship do
 
     sql_ms_order_totals = "SELECT mtdispat, mtpicked, mtverify,
                          mtverftd FROM mustshiptl"
-    sql_ms_orders = "SELECT msorno, msorgn, mscacd, msddate, msdtime, mspicker1,
-                   msunit1, mspicker2, msunit2, mscsnm FROM mustshiplx"
+    ms_totals = as400.run(sql_ms_order_totals).fetch_all
 
-    stmt_totals = as400.run(sql_ms_order_totals)
-    ms_totals = stmt_totals.fetch_all
     unless ms_totals.nil?
       ms_totals.each do |total|
         live_totals = set_order_totals(total)
@@ -38,8 +35,11 @@ namespace :mustship do
     end
 
     updated_order_nums = []
-    stmt_orders = as400.run(sql_ms_orders)
-    ms_orders = stmt_orders.fetch_all
+
+    sql_ms_orders = "SELECT msorno, msorgn, mscacd, msddate, msdtime, mspicker1,
+                   msunit1, mspicker2, msunit2, mscsnm FROM mustshiplx"
+    ms_orders = as400.run(sql_ms_orders).fetch_all
+
     unless ms_orders.nil?
       ms_orders.each do |order|
         updated_order_nums << order[0]

@@ -1,0 +1,88 @@
+$('#not-dispatched span').html('<%= @totals.not_dispatched %>');
+$('#not-picked span').html('<%= @totals.not_picked %>');
+$('#not-verified span').html('<%= @totals.not_verified %>');
+$('#verified span').html('<%= @totals.verified %>');
+
+<% if @totals.not_dispatched.to_i < 1 %>
+  $('#not-dispatched').removeClass("light-gray-bg").addClass("green-bg");
+<% else %>
+  $('#not-dispatched').removeClass("green-bg").addClass("light-gray-bg");
+<% end %>
+
+<% if @totals.not_picked.to_i < 1 %>
+  $('#not-picked').removeClass("light-gray-bg").addClass("green-bg");
+<% else %>
+  $('#not-picked').removeClass("green-bg").addClass("light-gray-bg");
+<% end %>
+
+<% if @totals.not_verified.to_i < 1 %>
+  $('#not-verified').removeClass("light-gray-bg").addClass("green-bg");
+<% else %>
+  $('#not-verified').removeClass("green-bg").addClass("light-gray-bg");
+<% end %>
+
+<% if @totals.verified.to_i > 0 %>
+  $('#verified').removeClass("light-gray-bg").addClass("green-bg");
+<% else %>
+  $('#verified').removeClass("green-bg").addClass("light-gray-bg");
+<% end %>
+
+<% if @mustships.any? %>
+  $('#mustship-data').html('\
+    <% @mustships.each do |order| %>\
+      <div id="<%= order.order_num %>" class="ms-order-row">\
+        <span class="row-data order-data">\
+          <%= order.order_num + ' / ' + order.order_gen %>\
+        </span>\
+        <span class="row-data carrier-data"><%= order.carrier %></span>\
+        <% if order.dispatch_date == '99999999' %>\
+          <span class="row-data dispatched-data bold red">\
+            NOT DISPATCHED\
+          </span>\
+        <% else %>\
+          <span class="row-data dispatched-date-data">\
+            <%= order.dispatch_date.to_datetime.strftime("%a %m/%d") %>\
+          </span>\
+          <span class="row-data dispatched-time-data">\
+            <%= (order.dispatch_date + ' ' + order.dispatch_time).to_datetime.strftime("%l:%M %p") %>\
+          </span>\
+        <% end %>\
+        <% if !(order.buf_picker.blank?) %>\
+          <span class="row-data picker-data bold green">\
+            <%= order.buf_picker %>\
+          </span>\
+          <span class="row-data unit-data bold green">\
+            <%= order.buf_unit %>\
+          </span>\
+        <% elsif !(%w(0 99).include? order.buf_unit) %>\
+          <span class="row-data picker-data"></span>\
+          <span class="row-data unit-data bold yellow">\
+            <%= order.buf_unit %>\
+          </span>\
+        <% else %>\
+          <span class="row-data picker-data"></span>\
+          <span class="row-data unit-data"></span>\
+        <% end %>\
+        <% if !(order.ont_picker.blank?) %>\
+          <span class="row-data picker-data bold green">\
+            <%= order.ont_picker %>\
+          </span>\
+          <span class="row-data unit-data bold green">\
+            <%= order.ont_unit %>\
+          </span>\
+        <% elsif !(%w(0 99).include? order.ont_unit) %>\
+          <span class="row-data picker-data"></span>\
+          <span class="row-data unit-data bold yellow">\
+            <%= order.ont_unit %>\
+          </span>\
+        <% else %>\
+          <span class="row-data picker-data"></span>\
+          <span class="row-data unit-data"></span>\
+        <% end %>\
+        <span class="row-data account-data text-left">\
+          <%= order.account_name[0...20] %>\
+        </span>\
+      </div>\
+    <% end %>'
+  );
+<% end %>
