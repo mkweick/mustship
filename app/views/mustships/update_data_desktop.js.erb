@@ -1,31 +1,4 @@
-$('#not-dispatched span').html('<%= @totals.not_dispatched %>');
-$('#not-picked span').html('<%= @totals.not_picked %>');
-$('#not-verified span').html('<%= @totals.not_verified %>');
-$('#verified span').html('<%= @totals.verified %>');
-
-<% if @totals.not_dispatched.to_i < 1 %>
-  $('#not-dispatched').removeClass("light-gray-bg").addClass("green-bg");
-<% else %>
-  $('#not-dispatched').removeClass("green-bg").addClass("light-gray-bg");
-<% end %>
-
-<% if @totals.not_picked.to_i < 1 %>
-  $('#not-picked').removeClass("light-gray-bg").addClass("green-bg");
-<% else %>
-  $('#not-picked').removeClass("green-bg").addClass("light-gray-bg");
-<% end %>
-
-<% if @totals.not_verified.to_i < 1 %>
-  $('#not-verified').removeClass("light-gray-bg").addClass("green-bg");
-<% else %>
-  $('#not-verified').removeClass("green-bg").addClass("light-gray-bg");
-<% end %>
-
-<% if @totals.verified.to_i > 0 %>
-  $('#verified').removeClass("light-gray-bg").addClass("green-bg");
-<% else %>
-  $('#verified').removeClass("green-bg").addClass("light-gray-bg");
-<% end %>
+<%= render('update_totals') %>
 
 <% if @mustships.any? %>
   $('#mustship-data').html('\
