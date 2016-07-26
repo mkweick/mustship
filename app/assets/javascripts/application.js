@@ -5,19 +5,24 @@
 //= require bootstrap
 //= require jquery.turbolinks
 
-$(function() {
-  var self = $('section'),
-      kids = self.children();
+function updateData() {
+  $.ajax({
+    url: "update-data"
+  });
+};
 
-  if (kids.size() > 21) {
-    setInterval(function() {
-      kids.slice(21).hide();
-      kids.filter(':hidden').eq(0).slideDown();
-      kids.eq(0).slideUp(800, "linear",function() {
-        $(this).appendTo(self);
-        kids = self.children();
-      })
-    }, 0)
-    return this;
-  };
-});
+function updateDataDesktop() {
+  $.ajax({
+    url: "update-data-desktop"
+  });
+};
+
+function scrollOrders() {
+  kids.slice(21).hide();
+  kids.filter(':hidden').eq(0).slideDown();
+  kids.eq(0).slideUp(800, "linear",function() {
+    $(this).appendTo(self);
+    kids = self.children();
+  })
+  return this;
+};

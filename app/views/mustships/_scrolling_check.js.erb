@@ -1,0 +1,13 @@
+var self = $('section'),
+    kids = self.children();
+
+if (kids.size() > 21) {
+  if (scrolling == null || scrolling == undefined) {
+    var scrolling = setInterval(scrollOrders, 0);
+  }
+} else {
+  if (scrolling) {
+    clearInterval(scrolling);
+    var scrolling = null;
+  }
+}
